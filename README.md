@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="[public/images/Screenshot 2025-07-07 at 07.35.42.png](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRtliRp3q5NbXe3goSwiuBIQgE9nK_Qc8BwA&s)" width="200" alt="FinComply Logo" />
+  <img src="[[public/images/Screenshot 2025-07-07 at 07.35.42.png](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRtliRp3q5NbXe3goSwiuBIQgE9nK_Qc8BwA&s)](https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmluYW5jZXxlbnwwfHwwfHx8MA%3D%3D)" width="200" alt="FinComply Logo" />
 </p>
 
 <p align="center">
