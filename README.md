@@ -161,8 +161,8 @@ erDiagram
     TAX_RULE }|--|| COUNTRY: applies_to
     COMPLIANCE_REQUIREMENT }|--|| COUNTRY: applies_to
     
-    EXCHANGE_RATE }|--|| CURRENCY: from
-    EXCHANGE_RATE }|--|| CURRENCY: to
+    EXCHANGE_RATE }|--|| CURRENCY_FROM: from_currency
+    EXCHANGE_RATE }|--|| CURRENCY_TO: to_currency
 ```
 
 ### Entity Descriptions
