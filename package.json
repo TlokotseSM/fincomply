@@ -18,7 +18,14 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "migration:run": "ts-node -r tsconfig-paths/register src/shared/database/scripts/run-migrations.ts",
+    "migration:revert": "ts-node -r tsconfig-paths/register src/shared/database/scripts/revert-migration.ts",
+    "migration:show": "ts-node -r tsconfig-paths/register src/shared/database/scripts/show-migrations.ts",
+    "seed": "ts-node -r tsconfig-paths/register src/shared/database/seeds/seed.ts",
+    "db:verify": "ts-node -r tsconfig-paths/register src/shared/database/scripts/verify-schema.ts",
+    "db:reset": "ts-node -r tsconfig-paths/register src/shared/database/scripts/reset-database.ts",
+    "db:quick-verify": "ts-node -r tsconfig-paths/register src/shared/database/scripts/quick-verify.ts"
   },
   "dependencies": {
     "@liaoliaots/nestjs-redis": "^10.0.0",
@@ -33,17 +40,18 @@
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "dotenv": "^17.2.3",
     "helmet": "^7.0.0",
     "ioredis": "^5.3.0",
     "nest-winston": "^1.9.6",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
-    "pg": "^8.11.0",
-    "reflect-metadata": "^0.1.13",
+    "pg": "^8.16.3",
+    "reflect-metadata": "^0.1.14",
     "rimraf": "^5.0.0",
-    "rxjs": "^7.8.0",
+    "rxjs": "^7.8.2",
     "swagger-ui-express": "^5.0.0",
-    "typeorm": "^0.3.17",
+    "typeorm": "^0.3.27",
     "winston": "^3.10.0"
   },
   "devDependencies": {
@@ -53,7 +61,7 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
-    "@types/node": "^20.3.1",
+    "@types/node": "^20.19.21",
     "@types/passport-jwt": "^3.0.8",
     "@types/pg": "^8.10.0",
     "@types/supertest": "^2.0.12",
@@ -68,8 +76,9 @@
     "supertest": "^6.3.0",
     "ts-jest": "^29.1.0",
     "ts-loader": "^9.4.3",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.3"
+    "typeorm-ts-node-commonjs": "^0.3.20",
+    "typescript": "^5.9.3"
   }
 }
