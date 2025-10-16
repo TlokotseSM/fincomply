@@ -1,10 +1,12 @@
 import { DataSource } from 'typeorm';
 import { Currency } from '../entities/currency.entity';
 import { Country } from '../entities/country.entity';
+import { User, UserRole, UserStatus } from '../entities/user.entity';
 import { currenciesData } from './currencies.seed';
 import { countriesData } from './countries.seed';
 import * as dotenv from 'dotenv';
 import { join } from 'path';
+import * as bcrypt from 'bcrypt';
 
 // Load environment variables
 dotenv.config();
@@ -23,6 +25,85 @@ const AppDataSource = new DataSource({
   logging: false,
 });
 
+async function seedUsers(queryRunner: any) {
+  console.log('👥 Seeding users...');
+  
+  const userRepository = queryRunner.manager.getRepository(User);
+  const hashedPassword = await bcrypt.hash('SecurePassword123!@#', 10);
+
+  const users = [
+    {
+      email: 'superadmin@fincomply.com',
+      username: 'superadmin',
+      firstName: 'Super',
+      lastName: 'Admin',
+      password: hashedPassword,
+      role: UserRole.SUPER_ADMIN,
+      status: UserStatus.ACTIVE,
+      emailVerified: true,
+      emailVerifiedAt: new Date(),
+    },
+    {
+      email: 'admin@fincomply.com',
+      username: 'admin',
+      firstName: 'Admin',
+      lastName: 'User',
+      password: hashedPassword,
+      role: UserRole.ADMIN,
+      status: UserStatus.ACTIVE,
+      emailVerified: true,
+      emailVerifiedAt: new Date(),
+    },
+    {
+      email: 'finance@fincomply.com',
+      username: 'finance_manager',
+      firstName: 'John',
+      lastName: 'Finance',
+      password: hashedPassword,
+      role: UserRole.FINANCE_MANAGER,
+      status: UserStatus.ACTIVE,
+      emailVerified: true,
+      emailVerifiedAt: new Date(),
+    },
+    {
+      email: 'payroll@fincomply.com',
+      username: 'payroll_officer',
+      firstName: 'Jane',
+      lastName: 'Payroll',
+      password: hashedPassword,
+      role: UserRole.PAYROLL_OFFICER,
+      status: UserStatus.ACTIVE,
+      emailVerified: true,
+      emailVerifiedAt: new Date(),
+    },
+    {
+      email: 'employee@fincomply.com',
+      username: 'employee',
+      firstName: 'Bob',
+      lastName: 'Employee',
+      password: hashedPassword,
+      role: UserRole.EMPLOYEE,
+      status: UserStatus.ACTIVE,
+      emailVerified: true,
+      emailVerifiedAt: new Date(),
+    },
+  ];
+
+  for (const userData of users) {
+    const exists = await userRepository.findOne({
+      where: { email: userData.email },
+    });
+
+    if (!exists) {
+      const user = userRepository.create(userData);
+      await userRepository.save(user);
+      console.log(`  ✓ Created user: ${userData.email}`);
+    } else {
+      console.log(`  ⊘ User ${userData.email} already exists`);
+    }
+  }
+}
+
 async function seed() {
   try {
     console.log('🌱 Starting database seeding...');
@@ -36,6 +117,9 @@ async function seed() {
     await queryRunner.startTransaction();
 
     try {
+      // Seed users (NEW)
+      await seedUsers(queryRunner);
+
       // Seed currencies
       console.log('📦 Seeding currencies...');
       const currencyRepository = queryRunner.manager.getRepository(Currency);
