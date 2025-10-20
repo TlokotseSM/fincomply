@@ -8,6 +8,7 @@ import { DatabaseModule } from './shared/database/database.module';
 import { RedisModule } from './shared/redis/redis.module';
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { EmployeesModule } from './modules/employees/employees.module';
 import { RequestLoggerMiddleware } from './modules/auth/middleware/request-logger.middleware';
 import { AuditLoggerMiddleware } from './modules/auth/middleware/audit-logger.middleware';
 
@@ -23,6 +24,7 @@ import { AuditLoggerMiddleware } from './modules/auth/middleware/audit-logger.mi
     RedisModule,
     HealthModule,
     AuthModule,
+    EmployeesModule,
   ],
   providers: [
     {
