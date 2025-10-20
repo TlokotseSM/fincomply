@@ -9,6 +9,12 @@ export function setupSwagger(app: INestApplication): void {
     .setTitle(configService.get('swagger.title'))
     .setDescription(configService.get('swagger.description'))
     .setVersion(configService.get('swagger.version'))
+    .setContact(
+      'FinComply Support',
+      'https://fincomply.com',
+      'tlokotsemogudi@gmail.com.com',
+    )
+    .setLicense('MIT', 'https://github.com/TlokotseSM/fincomply?tab=MIT-1-ov-file#readme')
     .addBearerAuth(
       {
         type: 'http',
@@ -36,6 +42,15 @@ export function setupSwagger(app: INestApplication): void {
       persistAuthorization: true,
       tagsSorter: 'alpha',
       operationsSorter: 'alpha',
+      deepLinking: true,
+      displayOperationId: true,
     },
+    customCss: `
+      .topbar { display: none; }
+      .swagger-ui .topbar-wrapper { display: none; }
+      .swagger-ui .info .title { font-size: 2.5em; }
+      .swagger-ui .scheme-container { background: #fafafa; }
+    `,
+    customSiteTitle: 'FinComply API Documentation',
   });
 }
